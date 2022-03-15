@@ -6,16 +6,28 @@ namespace BankingAPPConsole_Sancta
     {
         static void Main(string[] args)
         {
-            Accounts User1 = new Accounts()
+          #region collecte user informations 
+            Accounts User = new Accounts()
             {
                 accNumber = 77,
                 accName = "Annick",
                 accType = "cheching",
                 accBalance = 1000,
-                accIsActive = True,
+                accIsActive = true,
                 accEmail = "annick12@gmail.com"
-            }
+            };
             
-        }
+            #endregion
+            User.getAccountDetails();
+            Console.WriteLine(User.Withdraw(200)); 
+            Console.WriteLine(User.deposit(2000));
+            Console.WriteLine(User.CheckBalance());
+
+            
+
+            
+
+
+          
     }
-}
+}}
