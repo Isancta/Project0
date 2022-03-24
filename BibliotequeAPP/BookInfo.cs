@@ -17,7 +17,7 @@ namespace BibliotequeAPP
           
         #endregion
         
-         SqlConnection connection = new SqlConnection(@"Data source=SANCTA-MARIE\ISPM_TRAINING;Initial Catalog=BibliothequeAPP;integrated security=true");
+         SqlConnection connection = new SqlConnection("server=SANCTA-MARIE\\ISPM_TRAINING;database=BibliothequeAPP;integrated security=true");
 
         #region CATALOGUE CONTENT
 
@@ -140,6 +140,67 @@ namespace BibliotequeAPP
 
          } 
         
+        #endregion
+
+        #region
+        public void EditBook()
+         {
+            
+            string Sql_query= "update LibraryCatalogues set bookTitle = @changeTitle ,quantityInStore=@changeQuantity where bookCode=@bCode";
+            SqlCommand cmd_update = new SqlCommand( Sql_query,connection);
+            
+            cmd_update.Parameters.AddWithValue("@changeTitle",bookTitle);
+            
+            cmd_update.Parameters.AddWithValue("@changeQuantity",quantityInStore);
+            
+            cmd_update.Parameters.AddWithValue("@bCode",bookCode);
+
+            try
+            {
+             connection.Open();
+             cmd_update.ExecuteNonQuery();
+
+             Console.WriteLine("Book Updated Successfully");
+            }
+            catch(System.Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                
+            }
+            finally
+            {
+                connection.Close();
+            }
+           
+
+         }
+        #endregion
+
+        #region  DELETE BOOK FROM CART
+
+         public void DeleteBook()
+         {
+            SqlCommand cmd_deleteBook = new SqlCommand("delete from LibraryCatalogues where bookCode=@bookCode",connection);
+            cmd_deleteBook.Parameters.AddWithValue("@bookCode",bookCode);
+           
+            try
+            {
+                connection.Open();
+                cmd_deleteBook.ExecuteNonQuery();
+                Console.WriteLine( "Book deleted Successfully");
+            }
+            catch (System.Exception es)
+            {
+                
+                System.Console.WriteLine(es.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+          
+         }
+    
         #endregion
 
     }

@@ -66,28 +66,7 @@ namespace BibliotequeAPP
                                
                              case 2: 
 
-
-
-                             #region SEARCH BOOK BY TITLE IN CATALOGUE
-
-                                      System.Console.WriteLine("Enter Book title to search");
-                                      string wantedB = Console.ReadLine();
-                                      BookInfo yourBook = MyCatalogue.GetBookByTitle(wantedB);
-
-                                      Console.WriteLine("Book Code " + yourBook.bookCode);
-                                      Console.WriteLine("Book Title " + yourBook.bookTitle);
-                                      Console.WriteLine("Book Section " + yourBook.bookSection);
-                                      Console.WriteLine("Book Is Available " + yourBook.bookIsAvailable);
-                                      Console.WriteLine("Quantity available " + yourBook.quantityInStore);
-                                      Console.WriteLine("Price per Unit " + yourBook.unitPrice);
-                                      Console.ReadLine();
-                                      
-                                break;
-                               
-                                #endregion
-
-                                case 3:
-                                #region BORROW/LEASE/BUY-ADD BOOK TO CART
+                             #region ADD BOOK TO CATALOGUE
 
                                       BookInfo pickedB = new BookInfo();
                                       
@@ -114,54 +93,55 @@ namespace BibliotequeAPP
 
                                        break;
                                 #endregion
-                                     
-
-                                      
-
-                                      
-
-            
                                     
-                                   
-                                case 4: 
-                                #region EDIT BOOK FROM CART
+                             case 3:
+                             #region SEARCH BOOK BY TITLE IN CATALOGUE
 
-                                      System.Console.WriteLine("Enter Product title to edit");
-                                      string newTitle = Console.ReadLine();
+                                      System.Console.WriteLine("Enter Book title to search");
+                                      string wantedB = Console.ReadLine();
+                                      BookInfo yourBook = MyCatalogue.GetBookByTitle(wantedB);
 
-                                      System.Console.WriteLine("Enter Product Section");
-                                      string newSection = Console.ReadLine();
-
-                                      System.Console.WriteLine("Enter quantity");
-                                      int newQuantity = Convert.ToInt32(Console.ReadLine());
-
-                                      System.Console.WriteLine("Enter book is available");
-                                      bool newIsAvailable = Convert.ToBoolean(Console.ReadLine());
-
-                                      System.Console.WriteLine("Enter Product Price");
-                                      Double newPrice = Convert.ToDouble(Console.ReadLine());
-
+                                      Console.WriteLine("Book Code " + yourBook.bookCode);
+                                      Console.WriteLine("Book Title " + yourBook.bookTitle);
+                                      Console.WriteLine("Book Section " + yourBook.bookSection);
+                                      Console.WriteLine("Book Is Available " + yourBook.bookIsAvailable);
+                                      Console.WriteLine("Quantity available " + yourBook.quantityInStore);
+                                      Console.WriteLine("Price per Unit " + yourBook.unitPrice);
+                                      Console.ReadLine();
                                       
-                                      Cart bookChange = new Cart();
+                                break;
+                               
+                                #endregion
 
-                                      newTitle = bookChange.bookTitle;
-                                      newSection = bookChange.bookSection;
-                                      newQuantity =bookChange.quantity;
-                                      newIsAvailable = bookChange.bookIsAvailable;
-                                      newPrice = bookChange.unitPrice ;
-                   
-                                      System.Console.WriteLine(myLibrary.EditBook(bookChange));
-                          
+                                 
+                                case 4: 
+                                #region EDIT BOOK FROM Catalogue
+
+                                 BookInfo ediBook = new BookInfo();
+
+                                      Console.WriteLine("Enter book Code to edit");
+                                      ediBook.bookCode = Convert.ToInt32 (Console.ReadLine());
+
+                                      Console.WriteLine("Enter Book Name ");
+                                      ediBook.bookTitle = Console.ReadLine();
+
+                                       Console.WriteLine("Enter quantity");
+                                      ediBook.quantityInStore = Convert.ToInt32(Console.ReadLine());
+
+                                      ediBook.EditBook();
+                                      
                                 break;
                                 #endregion
 
                                 case 5: 
                                 #region DELETE BOOK FROM CART
+                                BookInfo bookdelete=new BookInfo();
 
-                                System.Console.WriteLine("Enter book title to delete");
-                                 string bookToDelete = Console.ReadLine();
+                                System.Console.WriteLine("Enter book Code to delete");
+                                 
+                                bookdelete.bookCode = Convert.ToInt32(Console.ReadLine());
 
-                                 System.Console.WriteLine(myLibrary.DeleteBook(bookToDelete));
+                                bookdelete.DeleteBook();
                 
                                 break;
                                 #endregion
