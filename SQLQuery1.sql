@@ -4,6 +4,8 @@ Create database BibliothequeAPP
  use BibliothequeAPP
  Go
 
+ select * from LibraryCatalogues
+
  create table LibraryCatalogues
    (
    bookCode int Primary key Identity(0001,1),
